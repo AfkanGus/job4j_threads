@@ -1,10 +1,10 @@
 package ru.job4j;
 
 /**
- * Hello world!
+ * Hello My World!
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Hello My World!");
     }
 }
