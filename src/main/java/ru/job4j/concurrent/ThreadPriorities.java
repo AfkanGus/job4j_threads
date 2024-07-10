@@ -17,7 +17,7 @@ public class ThreadPriorities extends Thread {
         Thread thread2 = new Thread();
         thread1.setPriority(Thread.MIN_PRIORITY);
         thread2.setPriority(Thread.MAX_PRIORITY);
-        thread1.start(); // Запускаем поток, что приведет к вызову метода run()
-        thread2.start(); // Запускаем поток, что приведет к вызову метода run()
+        thread1.start(); /* Запускаем поток, что приведет к вызову метода run()*/
+        thread2.start(); /* Запускаем поток, что приведет к вызову метода run()*/
     }
 }
