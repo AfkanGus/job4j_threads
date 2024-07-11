@@ -22,7 +22,7 @@ public class DaemonThread extends Thread {
 
     public static void main(String[] args) {
         DaemonThread daemonThread = new DaemonThread();
-        daemonThread.setDaemon(true); //устанавливает нит как демон
+        daemonThread.setDaemon(true);
         daemonThread.start();
         try {
             Thread.sleep(3000);
