@@ -7,7 +7,7 @@ import java.net.URL;
 import java.nio.file.Files;
 
 /**
- * 8. Скачивание файла с ограничением. [#144271].
+ * 8. Скачивание файла с ограничением. [#144271]
  */
 public class Wget implements Runnable {
     private final String url;
