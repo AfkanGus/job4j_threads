@@ -33,7 +33,6 @@ public class CounSynch {
         /* Монитор - это объект CounSynch */
     }
 
-
     /* Монитор будет сам класс CounSynch */
     public static synchronized int getValueS() {
         /*JVM исп.механиз маниторов для регулирования эксклюзивного доступа*/
