@@ -11,12 +11,12 @@ public class ThreadLocalAsinxron {
         Runnable task1 = () -> {
             Pr person = new Pr("John", 30);
             threadLocal.set(person);
-            person.name = "Bod";
+            person.setName("Bod");
         };
         /*второй поток*/
         Runnable task2 = () -> {
             Pr person = threadLocal.get();
-            person.age = 40;
+            person.setAge(40);
         };
         new Thread(task1).start();
         new Thread(task2).start();
