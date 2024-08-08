@@ -8,8 +8,7 @@ package ru.job4j.threads.threadlocal;
 public class ThreadLocalAsinxron {
     public static void main(String[] args) {
         ThreadLocal<Pr> threadLocal = new ThreadLocal<>();
-        Runnable task1 = () ->
-        {
+        Runnable task1 = () -> {
             Pr person = new Pr("John", 30);
             threadLocal.set(person);
             person.name = "Bod";
