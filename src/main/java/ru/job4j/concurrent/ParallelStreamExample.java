@@ -33,12 +33,15 @@ public class ParallelStreamExample {
         /*вернется новый паралельный поток*/
         IntStream sequential = parallel.sequential();
         System.out.println(sequential.isParallel());
-        /*в многопоточной среде нет гарантии сохранения порядка следования элементов
+        /*в многопоточной среде нет гарантии сохранения
+         порядка следования элементов
          * это неустранимыый побочный эффект метода peek()*/
         list.stream().parallel().peek(System.out::println).toList();
-        /*forEach. При параллельной обработке потока он так же будет выдавать искаженный порядок элементов*/
+        /*forEach. При параллельной обработке потока он так же
+         будет выдавать искаженный порядок элементов*/
         list.stream().parallel().forEach(System.out::println);
-        /*сохранения порядка следования элементов можно воспользоваться методов forEachOrdered():*/
+        /*сохранения порядка следования элементов можно
+         воспользоваться методов forEachOrdered():*/
         list.stream().parallel().forEachOrdered(System.out::println);
 
     }
