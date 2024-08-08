@@ -1,10 +1,12 @@
 package ru.job4j.concurrent;
 
 public class DebugConcurrentDemo {
-    public static void main(String[] args) {         /*здесь в главном потоке запускаетсе еще 2 потока*/
+    /*здесь в главном потоке запускаетсе еще 2 потока*/
+    public static void main(String[] args) {
         String name = "First thread";
         String name1 = "Second thread";
-        Thread t1 = new Thread(() -> /*в лямбде код выполняемый в новом потоке*/ {
+        /*в лямбде код выполняемый в новом потоке*/
+        Thread t1 = new Thread(() -> {
             try {
                 for (int i = 3; i > 0; i--) {
                     System.out.println(Thread.currentThread().getName() + ";" + i);
@@ -26,11 +28,14 @@ public class DebugConcurrentDemo {
             }
             System.out.println(Thread.currentThread().getName() + " ebd");
         }, name1);
-        t1.start(); /*запуск потоков и они будут выполнятся паралельно с главным потоком*/
+        /*запуск потоков и они будут выполнятся паралельно с главным потоком*/
+        t1.start();
         t2.start();
-        try {         /*главный поток в котором выполн метод main приостанавл на 100 милсек*/
+        try {
+            /*главный поток в котором выполн метод main приостанавл на 100 милсек*/
             Thread.sleep(100);
-        } catch (InterruptedException e) {  /*если во проемя сна поток будет прерван поймается исключение*/
+        } catch (InterruptedException e) {
+            /*если во проемя сна поток будет прерван поймается исключение*/
             System.out.println("main thread is break");
         }
         System.out.println("main thread is end");
@@ -38,6 +43,7 @@ public class DebugConcurrentDemo {
 }
 /**
  * 11. Отладка в многопоточном приложении [#504954 #507315].
- * Откладка в многопоточных прилож. предстовляет откладку как отдельное однопоточное приложение.
+ * Откладка в многопоточных прилож. предстовляет
+ * откладку как отдельное однопоточное приложение.
  * Поток в котором запущен откладчик, работает в однопоточном режиме.
  */
