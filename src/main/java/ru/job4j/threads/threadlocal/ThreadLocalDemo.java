@@ -9,7 +9,15 @@ package ru.job4j.threads.threadlocal;
  */
 
 public class ThreadLocalDemo {
-    public static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
+    public static ThreadLocal<String> getThreadLocal() {
+        return threadLocal;
+    }
+
+    public static void setThreadLocal(ThreadLocal<String> threadLocal) {
+        ThreadLocalDemo.threadLocal = threadLocal;
+    }
 
     public static void main(String[] args) throws InterruptedException {
         Thread first = new FirstThread();
