@@ -4,8 +4,8 @@ package ru.job4j.ref;
  * 4. Thread без общих ресурсов [#267919].
  */
 public class User {
-    private int id;
-    private String name;
+    private  int id;
+    private  String name;
 
     public static User of(String name) {
         User user = new User();
