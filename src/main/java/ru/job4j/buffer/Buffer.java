@@ -7,16 +7,19 @@ package ru.job4j.buffer;
  */
 public class Buffer {
     private StringBuilder buffer = new StringBuilder();
+    /* new Buffer (Объект класса buffer) - monitor */
 
-    /* 'this' — это текущий экземпляр объекта Buffer*/
-    public synchronized void add(int value) {
-        System.out.print(value);
-        buffer.append(value);
+    public void add(int value) { /* код внитри блока - критич секция */
+        synchronized (this) { /* this -  это текущий экземпляр класса Buffer - monitor */
+            System.out.print(value);
+            buffer.append(value);
+        }
     }
 
-    /*'this' — это текущий экземпляр объекта Buffer*/
     @Override
-    public synchronized String toString() {
-        return buffer.toString();
+    public String toString() { /* критич секция */
+        synchronized (this) { /*this — это текущий экземпляр объекта Buffer*/
+            return buffer.toString();
+        }
     }
 }
