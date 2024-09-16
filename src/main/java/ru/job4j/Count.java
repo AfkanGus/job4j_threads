@@ -1,20 +1,21 @@
 package ru.job4j;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 /**
  * 2. JCIP. Настройка библиотеки [#268575]
- * Атомарность - это свойство определяющее группу операций, которые выполняются неразрывно.
- * Операция инкремента счётчика не атомарна. Определить не атомарные операции просто.
- * Все операции, где данные зависят от начального состояния не атомарны.
- * Эти операции можно описать через процесс "проверить и выполнить".
  */
+@ThreadSafe
 public class Count {
+    @GuardedBy("this")
     private int value;
 
-    public void increment() {
+    public synchronized void increment() {
         this.value++;
     }
 
-    public int get() {
+    public synchronized int get() {
         return this.value;
     }
 }
