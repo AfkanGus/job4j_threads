@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * 1. Visibility. Общий ресурс вне критической секции [#1102].
  */
-public final class SavePFile {
+public class SavePFile {
     private final File file;
 
     public SavePFile(File file) {
