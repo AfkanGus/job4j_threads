@@ -1,4 +1,4 @@
-package ru.job4j.synch;
+package ru.job4j.synchronizers;
 
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
