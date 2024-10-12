@@ -37,7 +37,8 @@ public class AccountStorage {
         if (fromIdAccount != null && toIdAccount != null && fromIdAccount.amount() >= amount) {
             Account updatedFromAccount = new Account(fromIdAccount.id(),
                     fromIdAccount.amount() - amount);
-            Account updatedToAccount = new Account(toIdAccount.id(), toIdAccount.amount() + amount);
+            Account updatedToAccount = new Account(toIdAccount.id(),
+                    toIdAccount.amount() + amount);
             accountHashMap.put(fromId, updatedFromAccount);
             accountHashMap.put(toId, updatedToAccount);
             return true;
