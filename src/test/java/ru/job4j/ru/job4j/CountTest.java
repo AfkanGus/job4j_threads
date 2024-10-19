@@ -1,6 +1,7 @@
-package ru.job4j;
+package ru.job4j.ru.job4j;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.Count;
 
 import static org.assertj.core.api.Assertions.*;
 

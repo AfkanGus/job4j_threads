@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 
+/**
+ * 8. Скачивание файла с ограничением. [#144271 #504769].
+ * Программа должна скачивать файл из сети с ограничением по скорости скачки.
+ */
 public class FileDownload {
     public static void main(String[] args) throws IOException {
         var startAt = System.currentTimeMillis();
