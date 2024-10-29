@@ -1,12 +1,11 @@
 package ru.job4j.buffer;
 
-import net.jcip.annotations.ThreadSafe;
+
 import ru.job4j.waitnotify.SimpleBlockingQueue;
 
 /**
  * 2. Обеспечить остановку потребителя. [#66825].
  */
-@ThreadSafe
 public class ParallelSearch {
     public static void main(String[] args) {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(10);
