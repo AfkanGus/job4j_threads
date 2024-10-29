@@ -1,4 +1,4 @@
-package ru.job4j.memegwait;
+package ru.job4j.menegwait;
 
 /**
  * 0. Управление нитью через wait. [#6858].
