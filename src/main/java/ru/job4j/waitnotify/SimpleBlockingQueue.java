@@ -11,6 +11,8 @@ import java.util.Queue;
  * В задании нельзя использовать потокобезопасные коллекции
  * реализованные в JDK. Ваша задача используя,
  * wait/notifyAll реализовать блокирующую очередь.
+ * Эта блокирующая очередь,ограниченая по размеру.
+ * Producer помещает данную очередь,Consumer извелкает данные из очереди.
  */
 @ThreadSafe
 public class SimpleBlockingQueue<T> {
@@ -21,7 +23,6 @@ public class SimpleBlockingQueue<T> {
 
     public SimpleBlockingQueue(int maxLimitQueue) {
         this.maxLimitQueue = maxLimitQueue;
-
     }
 
     /*метод добавления элемена в очеред для Producer*/
@@ -46,7 +47,7 @@ public class SimpleBlockingQueue<T> {
             /*извлекаем эл.из начало очереди*/
             rsl = queue.poll();
             monitor.notifyAll();
-            return rsl;
+            return rsl; /*метод вернет обкт из клкц*/
         }
     }
 
