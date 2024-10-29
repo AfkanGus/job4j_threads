@@ -50,6 +50,5 @@ public class SimpleBlockingQueue<T> {
             return rsl; /*метод вернет обкт из клкц*/
         }
     }
-
 }
 
