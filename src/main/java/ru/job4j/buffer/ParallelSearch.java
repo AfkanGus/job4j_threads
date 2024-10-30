@@ -5,9 +5,11 @@ import ru.job4j.waitnotify.SimpleBlockingQueue;
 
 /**
  * 2. Обеспечить остановку потребителя. [#66825].
+ * В этом задании нужно разработать механизм остановки потребителя,
+ * когда производитель закончил свою работу.
  */
 public class ParallelSearch {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(10);
         final Thread consumer = new Thread(
                 () -> {
@@ -22,7 +24,7 @@ public class ParallelSearch {
                 }
         );
         consumer.start();
-        new Thread(
+        Thread producer = new Thread(
                 () -> {
                     for (int index = 0; index != 3; index++) {
                         try {
@@ -32,9 +34,12 @@ public class ParallelSearch {
                             e.printStackTrace();
                         }
                     }
-                    consumer.interrupt();
                 }
-
-        ).start();
+        );
+        producer.start();
+        /*ожидания завершения работы producer*/
+        producer.join();
+        /*корректно завершить consumer*/
+        consumer.interrupt();
     }
 }
