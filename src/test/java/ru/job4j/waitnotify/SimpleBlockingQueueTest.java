@@ -10,6 +10,7 @@ import static org.hamcrest.core.Is.is;
 
 /**
  * 1. Реализовать шаблон Producer Consumer. [#1098].
+ *  Написать тесты. В тестах должны быть две нити: одна производитель, другая потребитель.
  */
 class SimpleBlockingQueueTest {
     @Test
