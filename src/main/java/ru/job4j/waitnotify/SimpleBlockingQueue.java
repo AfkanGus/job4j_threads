@@ -50,5 +50,9 @@ public class SimpleBlockingQueue<T> {
             return rsl; /*метод вернет обкт из клкц*/
         }
     }
+
+    public synchronized boolean isEmpty() {
+       return queue.isEmpty();
+    }
 }
 

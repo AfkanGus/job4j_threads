@@ -4,13 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.entry;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * 1. Реализовать шаблон Producer Consumer. [#1098].
- *  Написать тесты. В тестах должны быть две нити: одна производитель, другая потребитель.
+ * 3. Junit тест для блокирующей очереди. [#68589].
+ * Написать тесты. В тестах должны быть две нити: одна производитель, другая потребитель.
  */
 class SimpleBlockingQueueTest {
     @Test
@@ -49,5 +54,42 @@ class SimpleBlockingQueueTest {
         List<Integer> expected = List.of(0, 1, 2, 3, 4);
         assertThat(list.size(), is(5));
         assertThat(list, is(expected));
+    }
+
+    @Test
+    public void whenFetchAllThenGetIt() throws InterruptedException {
+        final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
+        final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(5);
+        Thread producer = new Thread(
+                () -> {
+                    IntStream.range(0, 5).forEach(
+                            i -> {
+                                try {
+                                    queue.offer(i);
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                }
+                            }
+                    );
+                }
+        );
+        producer.start();
+        Thread consumer = new Thread(
+                () -> {
+                    while (!Thread.currentThread().isInterrupted() || !queue.isEmpty()) {
+                        try {
+                            buffer.add(queue.poll());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                }
+        );
+        consumer.start();
+        producer.join();
+        consumer.interrupt();
+        consumer.join();
+        assertThat(buffer).containsExactly(0, 1, 2, 3, 4);
     }
 }
