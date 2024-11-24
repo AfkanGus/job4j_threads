@@ -54,7 +54,8 @@ public class LockExample {
                     lock.unlock(); /*Освобождаем блокировку*/
                 }
             } else {
-                System.out.println(Thread.currentThread().getName() + " could not acquire lock to read value.");
+                System.out.println(Thread.currentThread().getName()
+                        + " could not acquire lock to read value.");
             }
         }
 
