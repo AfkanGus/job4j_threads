@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @ThreadSafe
 public class CASStack<T> {
-    private final AtomicReference<Node<T>> head = new AtomicReference<>();
+    private final AtomicReference<Node<T>>
+            head = new AtomicReference<>();
 
     public void push(T value) {
         Node<T> temp = new Node<>(value);
