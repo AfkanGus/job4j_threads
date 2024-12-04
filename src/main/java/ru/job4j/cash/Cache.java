@@ -13,20 +13,20 @@ public class Cache {
     private final Map<Integer, Base> memory = new ConcurrentHashMap<>();
 
     public boolean add(Base model) throws OptimisticException {
-        if (memory.containsKey(model.getId())) {
-            return false;
-        }
-        memory.put(model.getId(), model);
-        return true;
+        return memory.putIfAbsent(model.id(), model) == null;
     }
 
     public boolean update(Base model) throws OptimisticException {
-        /* TODO impl */
-        return false;
+        return memory.computeIfPresent(model.id(), (k, v) -> {
+            if (v.version() != model.version()) {
+                throw new OptimisticException("Versions are not equal");
+            }
+            return new Base(model.id(), model.name(), model.version() + 1);
+        }) != null;
     }
 
     public void delete(int id) {
-        /* TODO impl */
+        memory.remove(id);
     }
 
     public Optional<Base> findById(int id) {
